@@ -23,6 +23,7 @@ const ConsumptionMethodOption = ({
   return (
     <Card>
       <CardContent className="flex flex-col items-center gap-8 py-8">
+        {/* aqui tem uma dica para fazer com que a imagem preencha todo o espaço da div sem perder tanta resolução. Basta passar o relative na div e a largura e altura. Na imagem passa o atributo fill pra preencher e a class object-contain */}
         <div className="relative h-[80px] w-[80px]">
           <Image
             src={imageUrl}
