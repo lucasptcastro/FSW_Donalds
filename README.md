@@ -19,6 +19,8 @@
 
 #### Biblioteca de componentes bem interessante. Ela é integrada com o TailwindCss é diferente das outras bibliotecas de componentes, quando você instala não vem nenhum componente nativo. Você precisa instalar cada componente que for usar, deixando assim o projeto mais leve e instalando de fato os únicos componentes que forem ser utilizados no projeto.
 
+- No arquivo `src/app/[slug]/menu/components/categories.tsx` é usado um componente de scroll parecido com o ScrollView/FlatList do react native <b style="color: red;">INTERESSANTE!</b>
+
 ### Eslint:
 
 - Adicionado o plugin `eslint-plugin-simple-import-sort` que faz com que o eslint ordene as importações de um projeto (precisa configurar o eslint.config.mjs e o .vscode - caso queira que o código seja formatado sempre que for salvado) <b style="color: red;">INTERESSANTE!</b>
@@ -28,3 +30,5 @@
 - No arquivo `./src/app/[slug]/page.tsx` tem um exemplo de como coletar parâmetro pela URL no formato mais atualizado do NextJS <b style="color: red;">INTERESSANTE!</b>
 - No arquivo `src/app/[slug]/components/consumption-method-option.tsx` tem uma dica bacana sobre o uso de um <Link/> dentro de um <Button/>
 - No arquivo `src/app/[slug]/menu/components/header.tsx` tem uma dica sobre como usar o Pick do typescript <b style="color: red;">INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/components/consumption-method-option.tsx` tem uma dica sobre como adicionar uma imagem sem que ela perca muita resolução
+- No arquivo `src/app/[slug]/menu/components/products.tsx` tem uma dica sobre como formatar valores monetários com javascript sem precisar instalar bibliotecas extras <b style="color: red;">INTERESSANTE!</b>
