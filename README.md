@@ -2,6 +2,10 @@
 
 ---
 
+### Next:
+
+- No arquivo `next.confi.ts` tem uma configuração de permissão de domínio de imagens que basicamente diz ao Next um domínio que tem imagens hospedadas nele e que o Next pode confiar e exibir no projeto
+
 ### Prisma:
 
 - Há uma convenção para o formato dos nomes das migrations ao rodar o `npx prisma migrate dev` que diz que precisa ser utilizado o snakeCase (ex.: add_database_tables)
@@ -9,6 +13,7 @@
 - Se rodar `npx prisma migrate dev` as alterações já são enviadas ao banco sem precisar fazer commit
 - No arquivo `.prisma/schema.prisma` tem uma dica sobre onDelete: cascade (que serve basicamente para remover dados referentes a coluna referenciada caso ela seja deletada) <b style="color: red;">INTERESSANTE!</b>
 - O arquivo `.prisma/seed.ts` serve para rodar um script que preencha as tabelas do banco com os dados que estão no arquivo
+- O arquivo `src/lib/prisma.ts` tem um código que serve para que o prisma verifique se o projeto está apontado para produção. Se estiver, vai fazer uma conexão com o banco de dados sempre que tiver alterações. Se não, se o projeto estiver apontado pra desenvolvimento, vai usar cache para que o banco não seja requisitado várias vezes
 
 ### ShadCN:
 
@@ -17,3 +22,9 @@
 ### Eslint:
 
 - Adicionado o plugin `eslint-plugin-simple-import-sort` que faz com que o eslint ordene as importações de um projeto (precisa configurar o eslint.config.mjs e o .vscode - caso queira que o código seja formatado sempre que for salvado) <b style="color: red;">INTERESSANTE!</b>
+
+### Genérico:
+
+- No arquivo `./src/app/[slug]/page.tsx` tem um exemplo de como coletar parâmetro pela URL no formato mais atualizado do NextJS <b style="color: red;">INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/components/consumption-method-option.tsx` tem uma dica bacana sobre o uso de um <Link/> dentro de um <Button/>
+- No arquivo `src/app/[slug]/menu/components/header.tsx` tem uma dica sobre como usar o Pick do typescript <b style="color: red;">INTERESSANTE!</b>
