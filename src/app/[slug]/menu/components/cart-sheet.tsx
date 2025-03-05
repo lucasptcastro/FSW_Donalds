@@ -11,7 +11,7 @@ import {
 import { CartContext } from "../contexts/cart";
 
 const CartSheet = () => {
-  const { isOpen, toggleCart } = useContext(CartContext);
+  const { isOpen, toggleCart, products } = useContext(CartContext);
 
   return (
     <>
