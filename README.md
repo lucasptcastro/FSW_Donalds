@@ -19,7 +19,8 @@
 
 #### Biblioteca de componentes bem interessante. Ela é integrada com o TailwindCss é diferente das outras bibliotecas de componentes, quando você instala não vem nenhum componente nativo. Você precisa instalar cada componente que for usar, deixando assim o projeto mais leve e instalando de fato os únicos componentes que forem ser utilizados no projeto.
 
-- No arquivo `src/app/[slug]/menu/components/categories.tsx` é usado um componente de scroll parecido com o ScrollView/FlatList do react native <b style="color: yellow;">INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/menu/components/categories.tsx` é usado um componente de scroll parecido com o ScrollView/FlatList do react native <b style="color: red;">MUITO INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/menu/components/cart-sheet.tsx` é usado um componente de sheet que funciona como um modal que é exibido na lateral da página toda com um efeito ao ser aberto e que pode ser fechado teclando ESC <b style="color: red;">MUITO INTERESSANTE!</b>
 
 ### Eslint:
 
