@@ -36,11 +36,16 @@ body {
   }
 }
 
+/* serve para aplicar o estilo em toda a tag que está sendo referenciada */
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply h-full bg-background text-foreground;
+  }
+
+  html {
+    @apply h-full;
   }
 }
