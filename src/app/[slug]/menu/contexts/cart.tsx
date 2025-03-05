@@ -32,7 +32,29 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addProduct = (product: CartProduct) => {
-    setProducts((prev) => [...prev, product]);
+    // Verifica se o produto está no carrinho
+    const productIsAlreadyOnTheCart = products.some(
+      (prevProduct) => prevProduct.id === product.id,
+    );
+
+    // Se o produto não estiver no carrinho adiciona
+    if (!productIsAlreadyOnTheCart) {
+      return setProducts((prevProducts) => [...prevProducts, product]);
+    }
+
+    // Se o produto estiver no carrinho incrementa o valor da quantidade
+    setProducts((prevProducts) => {
+      return prevProducts.map((prevProduct) => {
+        if (prevProduct.id === product.id) {
+          return {
+            ...prevProduct,
+            quantity: prevProduct.quantity + product.quantity,
+          };
+        }
+
+        return prevProduct;
+      });
+    });
   };
 
   // Os valores do CartContext.Provider são os valores que serão passados para os filhos desse context (todos os componentes/pages que estiverem em volta desse Context)
