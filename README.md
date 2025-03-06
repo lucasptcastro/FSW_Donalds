@@ -21,10 +21,18 @@
 
 - No arquivo `src/app/[slug]/menu/components/categories.tsx` é usado um componente de scroll parecido com o ScrollView/FlatList do react native <b style="color: red;">MUITO INTERESSANTE!</b>
 - No arquivo `src/app/[slug]/menu/components/cart-sheet.tsx` é usado um componente de sheet que funciona como um modal que é exibido na lateral da página toda com um efeito ao ser aberto e que pode ser fechado teclando ESC <b style="color: red;">MUITO INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/menu/components/finish-order-button.tsx` é usado um componente de drawer que funciona como um modal que é exibido com uma transição <b style="color: red;">MUITO INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/menu/components/finish-order-button.tsx` é usado um componente de form que é nativamente integrado com o react-hook-form e zod (o shadcn instala o react-hook-form e o zod automaticamente quando o componente form é instalado) <b style="color: red;">MUITO INTERESSANTE!</b>
 
 ### Eslint:
 
 - Adicionado o plugin `eslint-plugin-simple-import-sort` que faz com que o eslint ordene as importações de um projeto (precisa configurar o eslint.config.mjs e o .vscode - caso queira que o código seja formatado sempre que for salvado) <b style="color: yellow;">INTERESSANTE!</b>
+
+### ReactNumberFormat:
+
+#### Biblioteca para formatar números
+
+- No arquivo `src/app/[slug]/menu/components/finish-order-button.tsx` essa biblioteca é usada para formatar CPF utilizando . e - <b style="color: red;">MUITO INTERESSANTE!</b>
 
 ### Genérico:
 
@@ -34,6 +42,8 @@
 - No arquivo `src/app/[slug]/components/consumption-method-option.tsx` tem uma dica sobre como adicionar uma imagem sem que ela perca muita resolução
 - No arquivo `src/app/[slug]/menu/components/products.tsx` tem uma dica sobre como formatar valores monetários com javascript sem precisar instalar bibliotecas extras <b style="color: yellow;">INTERESSANTE!</b>
 - No arquivo `src/app/globals.css` tem a sintaxe @apply que serve para aplicar o css em toda tag que está sendo referenciada no @apply <b style="color: yellow;">INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/menu/components/finish-order-button.tsx` tem uma dica sobre como evitar que um botão fique dentro de outro botão no html
+- No arquivo `src/app/[slug]/menu/helpers/cpf.ts` tem uma função que verifica se o cpf passado como parâmetro é válido ou não (a função valida não somente números e caracteres, mas de fato se o CPF é válido ou não) <b style="color: red;">MUITO INTERESSANTE!</b>
 
 ### Clean Code:
 
