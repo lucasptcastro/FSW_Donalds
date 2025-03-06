@@ -57,7 +57,6 @@ const CpfForm = () => {
 
   return (
     <Drawer open>
-      <DrawerTrigger>Open</DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Visualizar Pedidos</DrawerTitle>
