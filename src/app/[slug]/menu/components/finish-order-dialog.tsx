@@ -1,8 +1,14 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ConsumptionMethod } from "@prisma/client";
+import { Loader2Icon } from "lucide-react";
+import { useParams, useSearchParams } from "next/navigation";
+import { useContext, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
+import { start } from "repl";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -26,6 +32,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+import { createOrder } from "../actions/create-order";
+import { CartContext } from "../contexts/cart";
 import { isValidCpf } from "../helpers/cpf";
 
 const formSchema = z.object({
@@ -45,6 +53,15 @@ interface FinishOrderDialogProps {
 }
 
 const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
+  const { slug } = useParams<{ slug: string }>();
+
+  const searchParams = useSearchParams();
+
+  // o useTransition faz com que a variável isPending seja falsa até que um bloco tenha sido finalizado
+  const [isPending, startTransition] = useTransition();
+
+  const { products } = useContext(CartContext);
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,7 +71,30 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
     shouldUnregister: true, // faz com que as informações do form sejam excluídas/limpadas quando o formulário não estiver mais visível na página
   });
 
-  const onSubmit = (data: FormSchema) => {};
+  const onSubmit = async (data: FormSchema) => {
+    try {
+      const consumptionMethod = searchParams.get(
+        "consumptionMethod",
+      ) as ConsumptionMethod;
+
+      // o startTransition altera o valor do isPending para true quando todo o bloco que está dentro dele for finalizado (muito útil para usar com componentes de loading)
+      startTransition(async () => {
+        await createOrder({
+          consumptionMethod,
+          customerCpf: data.cpf,
+          customerName: data.name,
+          products: products,
+          slug: slug,
+        });
+
+        onOpenChange(false);
+
+        toast.success("Pedido finalizado com sucesso!");
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
@@ -108,7 +148,9 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
                   type="submit"
                   variant="destructive"
                   className="rounded-full"
+                  disabled={isPending}
                 >
+                  {isPending && <Loader2Icon className="animate-spin" />}
                   Finalizar
                 </Button>
                 <DrawerClose asChild>
