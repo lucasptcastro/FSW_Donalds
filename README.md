@@ -34,3 +34,7 @@
 - No arquivo `src/app/[slug]/components/consumption-method-option.tsx` tem uma dica sobre como adicionar uma imagem sem que ela perca muita resolução
 - No arquivo `src/app/[slug]/menu/components/products.tsx` tem uma dica sobre como formatar valores monetários com javascript sem precisar instalar bibliotecas extras <b style="color: yellow;">INTERESSANTE!</b>
 - No arquivo `src/app/globals.css` tem a sintaxe @apply que serve para aplicar o css em toda tag que está sendo referenciada no @apply <b style="color: yellow;">INTERESSANTE!</b>
+
+### Clean Code:
+
+- É importante não deixar um if dentro de outro
