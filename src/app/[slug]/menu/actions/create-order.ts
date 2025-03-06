@@ -2,6 +2,7 @@
 // diz que o arquivo terá server actions (funciona como uma espécie de rota de API)
 
 import { ConsumptionMethod } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { db } from "@/lib/prisma";
@@ -62,6 +63,9 @@ export const createOrder = async (input: CreateOrderInput) => {
       restaurantId: restaurant.id,
     },
   });
+
+  // serve para guardar as informações da tela em cache
+  revalidatePath(`/${input.slug}/orders`);
 
   redirect(
     `/${input.slug}/orders?cpf=${removeCpfPunctuation(input.customerCpf)}`,
