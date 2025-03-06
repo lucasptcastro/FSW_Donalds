@@ -14,6 +14,7 @@ export interface ICartContext {
   toggleCart: () => void;
   addProduct: (product: CartProduct) => void;
   decreaseProductQuantity: (productId: string) => void;
+  increaseProductQuantity: (productId: string) => void;
 }
 
 // aqui tem os valores padrões que a tipagem ICartContext receberá
@@ -23,6 +24,7 @@ export const CartContext = createContext<ICartContext>({
   toggleCart: () => {},
   addProduct: () => {},
   decreaseProductQuantity: () => {},
+  increaseProductQuantity: () => {},
 });
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
@@ -75,6 +77,18 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const increaseProductQuantity = (productId: string) => {
+    setProducts((prevProducts) => {
+      return prevProducts.map((prevProduct) => {
+        if (prevProduct.id !== productId) {
+          return prevProduct;
+        }
+
+        return { ...prevProduct, quantity: prevProduct.quantity + 1 };
+      });
+    });
+  };
+
   // Os valores do CartContext.Provider são os valores que serão passados para os filhos desse context (todos os componentes/pages que estiverem em volta desse Context)
   return (
     <CartContext.Provider
@@ -84,6 +98,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         toggleCart: toggleCart,
         addProduct,
         decreaseProductQuantity,
+        increaseProductQuantity,
       }}
     >
       {children}
