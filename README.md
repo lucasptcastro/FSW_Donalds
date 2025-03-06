@@ -5,6 +5,7 @@
 ### Next:
 
 - No arquivo `next.confi.ts` tem uma configuração de permissão de domínio de imagens que basicamente diz ao Next um domínio que tem imagens hospedadas nele e que o Next pode confiar e exibir no projeto
+- No arquivo `src/app/[slug]/menu/actions/create-order.ts` o arquivo trata-se de uma server action que funciona como uma espécie de rota de api que quando utilizado faz uma ação no lado do servidor. Neste caso, a função é para salvar os dados da order no banco de dados <b style="color: red;">MUITO INTERESSANTE!</b>
 
 ### Prisma:
 
@@ -21,8 +22,10 @@
 
 - No arquivo `src/app/[slug]/menu/components/categories.tsx` é usado um componente de scroll parecido com o ScrollView/FlatList do react native <b style="color: red;">MUITO INTERESSANTE!</b>
 - No arquivo `src/app/[slug]/menu/components/cart-sheet.tsx` é usado um componente de sheet que funciona como um modal que é exibido na lateral da página toda com um efeito ao ser aberto e que pode ser fechado teclando ESC <b style="color: red;">MUITO INTERESSANTE!</b>
-- No arquivo `src/app/[slug]/menu/components/finish-order-button.tsx` é usado um componente de drawer que funciona como um modal que é exibido com uma transição <b style="color: red;">MUITO INTERESSANTE!</b>
-- No arquivo `src/app/[slug]/menu/components/finish-order-button.tsx` é usado um componente de form que é nativamente integrado com o react-hook-form e zod (o shadcn instala o react-hook-form e o zod automaticamente quando o componente form é instalado) <b style="color: red;">MUITO INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/menu/components/finish-order-dialog.tsx` é usado um componente de drawer que funciona como um modal que é exibido com uma transição <b style="color: red;">MUITO INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/menu/components/finish-order-dialog.tsx` é usado um componente de form que é nativamente integrado com o react-hook-form e zod (o shadcn instala o react-hook-form e o zod automaticamente quando o componente form é instalado) <b style="color: red;">MUITO INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/menu/components/finish-order-dialog.tsx` é usado um componente de form que é nativamente integrado com o react-hook-form e zod (o shadcn instala o react-hook-form e o zod automaticamente quando o componente form é instalado) <b style="color: red;">MUITO INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/menu/components/finish-order-dialog.tsx` é usado um componente de Toast minimalista bem interessante. Para usá-lo, é preciso que que o componente Toaster esteja no arquivo root do projeto (layout.tsx) e basta chamar o toast no arquivo em que ele será utilizado <b style="color: yellow;">INTERESSANTE!</b>
 
 ### Eslint:
 
@@ -32,7 +35,7 @@
 
 #### Biblioteca para formatar números
 
-- No arquivo `src/app/[slug]/menu/components/finish-order-button.tsx` essa biblioteca é usada para formatar CPF utilizando . e - <b style="color: red;">MUITO INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/menu/components/finish-order-dialog.tsx` essa biblioteca é usada para formatar CPF utilizando . e - <b style="color: red;">MUITO INTERESSANTE!</b>
 
 ### Genérico:
 
@@ -42,8 +45,9 @@
 - No arquivo `src/app/[slug]/components/consumption-method-option.tsx` tem uma dica sobre como adicionar uma imagem sem que ela perca muita resolução
 - No arquivo `src/app/[slug]/menu/components/products.tsx` tem uma dica sobre como formatar valores monetários com javascript sem precisar instalar bibliotecas extras <b style="color: yellow;">INTERESSANTE!</b>
 - No arquivo `src/app/globals.css` tem a sintaxe @apply que serve para aplicar o css em toda tag que está sendo referenciada no @apply <b style="color: yellow;">INTERESSANTE!</b>
-- No arquivo `src/app/[slug]/menu/components/finish-order-button.tsx` tem uma dica sobre como evitar que um botão fique dentro de outro botão no html
+- No arquivo `src/app/[slug]/menu/components/finish-order-dialog.tsx` tem uma dica sobre como evitar que um botão fique dentro de outro botão no html
 - No arquivo `src/app/[slug]/menu/helpers/cpf.ts` tem uma função que verifica se o cpf passado como parâmetro é válido ou não (a função valida não somente números e caracteres, mas de fato se o CPF é válido ou não) <b style="color: red;">MUITO INTERESSANTE!</b>
+- No arquivo `src/app/[slug]/menu/components/finish-order-dialog.tsx` é usado o hook useTransition do react que serve para acompanhar a execução de um bloco de código e atualizar o status boolean para true quando o bloco for finalizado (muito útil para usar com componentes de loading) <b style="color: yellow;">INTERESSANTE!</b>
 
 ### Clean Code:
 
