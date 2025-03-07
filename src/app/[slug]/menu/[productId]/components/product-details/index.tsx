@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useContext, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { formatCurrency } from "@/helpers/format-currency";
 
 import CartSheet from "../../../components/cart-sheet";
@@ -115,11 +115,14 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                 <h4 className="font-semibold">Ingredientes</h4>
               </div>
 
-              <ul className="list-disc px-5 text-sm text-muted-foreground">
-                {product.ingredients.map((ingredient) => (
-                  <li key={ingredient}>{ingredient}</li>
-                ))}
-              </ul>
+              <ScrollArea className="flex-1 border">
+                <ul className="text-muted-fo list-disc px-5 text-sm text-muted-foreground">
+                  {product.ingredients.map((ingredient) => (
+                    <li key={ingredient}>{ingredient}</li>
+                  ))}
+                </ul>
+              </ScrollArea>
+              <ScrollBar orientation="vertical" />
             </div>
           </ScrollArea>
         </div>
