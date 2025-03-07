@@ -43,11 +43,21 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
+      const scrollHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight; // Altura total do conteúdo
+      const clientHeight =
+        document.documentElement.clientHeight || document.body.clientHeight; // Altura visível da janela
+
+      const maxScrollYHeight = scrollHeight - clientHeight;
+
+      if (currentScrollY === maxScrollYHeight) {
+        setIsVisible(false);
+      }
+
       if (currentScrollY > lastScrollY) {
         // Rolando para baixo
         setIsVisible(false);
       } else {
-        // Rolando para cima
         setIsVisible(true);
       }
 
