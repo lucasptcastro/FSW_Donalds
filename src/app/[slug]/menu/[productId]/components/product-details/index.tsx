@@ -99,9 +99,9 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             </div>
           </div>
 
-          <ScrollArea className="h-full">
+          <ScrollArea className="h-screen">
             {/* SOBRE */}
-            <div className="mt-6 space-y-3">
+            <div className="mt-6 h-fit space-y-3">
               <h4 className="font-semibold">Sobre</h4>
               <p className="text-sm text-muted-foreground">
                 {product.description}
@@ -109,20 +109,17 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             </div>
 
             {/* INGREDIENTES */}
-            <div className="mt-6 space-y-3">
+            <div className="my-6 h-screen space-y-3">
               <div className="flex items-center gap-1">
                 <ChefHatIcon />
                 <h4 className="font-semibold">Ingredientes</h4>
               </div>
 
-              <ScrollArea className="flex-1 border">
-                <ul className="text-muted-fo list-disc px-5 text-sm text-muted-foreground">
-                  {product.ingredients.map((ingredient) => (
-                    <li key={ingredient}>{ingredient}</li>
-                  ))}
-                </ul>
-              </ScrollArea>
-              <ScrollBar orientation="vertical" />
+              <ul className="text-muted-fo list-disc px-5 text-sm text-muted-foreground">
+                {product.ingredients.map((ingredient) => (
+                  <li key={ingredient}>{ingredient}</li>
+                ))}
+              </ul>
             </div>
           </ScrollArea>
         </div>
