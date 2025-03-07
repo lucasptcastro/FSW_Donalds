@@ -3,7 +3,7 @@
 import { Prisma } from "@prisma/client";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
@@ -33,6 +33,36 @@ type menuCategoriesWithProducts = Prisma.MenuCategoryGetPayload<{
 }>;
 
 const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  let lastScrollY = 0; // Variável para armazenar a última posição do scroll
+
+  // Função para lidar com o scroll. Se usar scroll para baixo irá ocutar a div da sacola, senão exibe
+  useEffect(() => {
+    // Função que lida com o evento de scroll
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        // Rolando para baixo
+        setIsVisible(false);
+      } else {
+        // Rolando para cima
+        setIsVisible(true);
+      }
+
+      lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY; // Garantir que o valor não fique negativo
+    };
+
+    // Adiciona o event listener para o scroll
+    window.addEventListener("scroll", handleScroll);
+
+    // Limpa o event listener ao desmontar o componente
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const [selectedCategory, setSelectedCategory] =
     useState<menuCategoriesWithProducts>(restaurant.MenuCategory[0]);
 
@@ -45,6 +75,31 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
 
   const getCategoryButtonVariant = (category: menuCategoriesWithProducts) => {
     return selectedCategory.id === category.id ? "default" : "secondary";
+  };
+
+  const showProductsBag = () => {
+    if (products.length <= 0) return;
+
+    if (!isVisible) return;
+
+    return (
+      <div className="fixed bottom-0 left-0 right-0 flex w-full items-center justify-between border-t bg-white px-5 py-3">
+        <div>
+          <p className="text-xs text-muted-foreground">Total dos pedidos</p>
+
+          <p className="text-sm font-semibold">
+            {formatCurrency(total)}
+            <span className="text-xs font-normal text-muted-foreground">
+              / {totalQuantity} {totalQuantity > 1 ? "itens" : "item"}
+            </span>
+          </p>
+        </div>
+
+        <Button onClick={toggleCart}>Ver sacola</Button>
+
+        <CartSheet />
+      </div>
+    );
   };
 
   return (
@@ -92,24 +147,7 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
 
       <Products products={selectedCategory.products} />
 
-      {products.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 flex w-full items-center justify-between border-t bg-white px-5 py-3">
-          <div>
-            <p className="text-xs text-muted-foreground">Total dos pedidos</p>
-
-            <p className="text-sm font-semibold">
-              {formatCurrency(total)}
-              <span className="text-xs font-normal text-muted-foreground">
-                / {totalQuantity} {totalQuantity > 1 ? "itens" : "item"}
-              </span>
-            </p>
-          </div>
-
-          <Button onClick={toggleCart}>Ver sacola</Button>
-
-          <CartSheet />
-        </div>
-      )}
+      {showProductsBag()}
     </div>
   );
 };
