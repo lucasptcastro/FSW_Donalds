@@ -50,7 +50,7 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
 
       const maxScrollYHeight = scrollHeight - clientHeight;
 
-      if (currentScrollY === maxScrollYHeight) {
+      if (currentScrollY >= maxScrollYHeight) {
         setIsVisible(false);
       }
 
