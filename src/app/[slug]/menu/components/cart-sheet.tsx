@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
   SheetContent,
@@ -28,30 +29,32 @@ const CartSheet = () => {
             <SheetTitle className="text-left">Sacola</SheetTitle>
           </SheetHeader>
 
-          <div className="flex h-full flex-col py-5">
-            <div className="flex-auto space-y-3">
+          <div className="flex h-full flex-col justify-between pb-5">
+            <ScrollArea className="h-full space-y-3">
               {products.map((product) => (
                 <CartProductItem key={product.id} product={product} />
               ))}
+            </ScrollArea>
+
+            <div className="pt-6">
+              <Card className="mb-6">
+                <CardContent className="p-5">
+                  <div className="flex justify-between">
+                    <p className="text-sm text-muted-foreground">Total</p>
+                    <p className="text-sm font-semibold">
+                      {formatCurrency(total)}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Button
+                className="w-full rounded-full"
+                onClick={() => setFinishOrderDialogIsOpen(true)}
+              >
+                Finalizar pedido
+              </Button>
             </div>
-
-            <Card className="mb-6">
-              <CardContent className="p-5">
-                <div className="flex justify-between">
-                  <p className="text-sm text-muted-foreground">Total</p>
-                  <p className="text-sm font-semibold">
-                    {formatCurrency(total)}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Button
-              className="w-full rounded-full"
-              onClick={() => setFinishOrderDialogIsOpen(true)}
-            >
-              Finalizar pedido
-            </Button>
 
             <FinishOrderDialog
               open={finishOrderDialogIsOpen}
